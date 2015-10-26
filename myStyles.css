@@ -1,7 +1,15 @@
 body, html{
     margin:0;
     padding:0;
-    background:black;
+    height:100%;
+}
+body{
+    background-image: -moz-linear-gradient(top,
+rgb(50,50,70) 52.5%,
+rgb(90,50,50) 47.5%
+);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 img{
     position:absolute;
