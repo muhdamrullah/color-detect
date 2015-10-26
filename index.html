@@ -5,7 +5,7 @@
 <title>
 Image
 </title>
-<script src="http://code.jquery.com/jquery-1.5.2.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript"></script>
 <link href="/css/normalize.css" type="text/css" rel="stylesheet"></link>
 <link href="/css/result-light.css" type="text/css" rel="stylesheet"></link>
 <style type="text/css">
@@ -33,12 +33,27 @@ function test() {
 }
 test();
 </script>
+<script type="text/javascript">
+
+function loadimage(){
+    d = new Date();
+    var myStylesLocation = "myStyles";
+    $('<style type="text/css"></style>')
+        .html('@import url("' + myStylesLocation +".css?"+d.getTime()+ '")')
+        .appendTo("head");
+}
+loadimage();
+setInterval(function(){
+    loadimage() // this will run after every 5 seconds
+}, 5000);
+</script>
 </head>
 <body>
 <div id="container">
 <img src="http://elegantthemes.com/preview/InStyle/wp-content/uploads/2008/11/s-1.jpg" </img>
 <img src="http://elegantthemes.com/preview/InStyle/wp-content/uploads/2008/11/s-5.jpg" </img>
 <img src="http://elegantthemes.com/preview/InStyle/wp-content/uploads/2008/11/s-3.jpg" </img>
+<img src="color-detect.png" </img>
 </div>
 </body>
 </html>
