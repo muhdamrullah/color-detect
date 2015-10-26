@@ -21,15 +21,33 @@ r, g, b = colorsys.hsv_to_rgb(h, s, v)
 print r,g,b
 # build a color palette
 palette = color_thief.get_palette(color_count=6)
-print palette
+print palette[1]
+secondary = palette[1]
+r2 = float(secondary[0])
+g2 = float(secondary[1])
+b2 = float(secondary[2])
+print r,g,b
+h2, s2, v2 = colorsys.rgb_to_hsv(r2, g2, b2)
+print h2
+print s2
+print v2
+s2 = s2*5
+v2 = v2*1.5
+
+r2, g2, b2 = colorsys.hsv_to_rgb(h2, s2, v2)
 
 # with is like your try .. finally block in this case
 with open('myStyles.css', 'r') as file:
     # read a list of lines into data
     data = file.readlines()
 
-# now change the 2nd line, note that you have to add a newline
-data[3] = '    background: rgb(%d, %d, %d);\n' % (r,g,b)
+# now change the 8th line, note that you have to add a newline
+majority = "47.5%"
+data[8] = 'rgb(%d,%d,%d) %s\n' % (r,g,b,majority)
+
+# now change the 7th line, note that you have to add a newline
+minority = "52.5%"
+data[7] = 'rgb(%d,%d,%d) %s,\n' % (r2,g2,b2,minority)
 
 # and write everything back
 with open('MyStyles.css', 'w') as file:
