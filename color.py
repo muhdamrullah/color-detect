@@ -5,13 +5,21 @@ import numpy
 import Image
 
 while True:
+  try:
     #img = cv2.imread('/var/lib/motion/Photo.jpg')
     #roi = img[240:480, 240:400]
     #cv2.imshow("cropped", roi)
     #cv2.waitKey(1)
     #roi_array = Image.fromarray(roi)
     #roi_array.save('Photo.jpg')
-    img = Image.open('/var/lib/motion/Photo.jpg')
+    
+    #URL to save image 
+    imgurl = 'http://192.168.56.1:8000/photo.png'
+    localimg = urllib2.urlopen(imgurl)
+    localFile = open('photo.png', 'wb')
+    localFile.write(localimg.read())
+    localFile.close()
+    img = Image.open('photo.png')
     #w, h = img.size
     cropped = img.crop((240,240,400,480))
     cropped.save("Photo.jpg")
@@ -67,3 +75,5 @@ while True:
     with open('MyStyles.css', 'w') as file:
         file.writelines( data )
     time.sleep(2)
+  except IOError:
+    pass
